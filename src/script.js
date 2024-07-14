@@ -40,14 +40,11 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 
-let time = Date.now();
+let clock = new THREE.Clock();
 // Animations
 const tick = () => {
-  /* Using delta time concept for consistency in all frame rates*/
-  let currentTime = Date.now();
-  let deltaTime = currentTime - time;
-  time = currentTime;
-  mesh.rotation.y += deltaTime * 0.002;
+  let elapsedTime = clock.getElapsedTime();
+  mesh.rotation.y = elapsedTime * Math.PI * 1;
 
   renderer.render(scene, camera);
   window.requestAnimationFrame(tick);
